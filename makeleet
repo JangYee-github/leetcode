@@ -1,0 +1,44 @@
+#!/bin/bash
+
+if [ "x$1" == "x" ]; then
+    for_count=10
+else
+    for_count=$1
+fi
+g++ -std=c++11 main.cpp -Iown -g -o own/app
+g++ -std=c++11 main.cpp -Ioffice -g -o office/app
+
+
+for i in `seq $for_count`
+do
+    # echo $i
+    python test.py > /tmp/input
+    cat /tmp/input | own/app  > /tmp/own.output
+    cat /tmp/input | office/app > /tmp/office.output
+    sort /tmp/own.output > /tmp/1 && mv /tmp/1 /tmp/own.output
+    sort /tmp/office.output > /tmp/1 && mv /tmp/1 /tmp/office.output
+    diff /tmp/own.output /tmp/office.output > /dev/null
+    if [ $? -eq 0 ]; then
+        none=1
+        echo "you are right"
+    else
+        echo "you are error:"
+        echo "input head:"
+        echo "=================================================="
+        head /tmp/input
+        echo "=================================================="
+        echo ""
+
+        echo "own output head:"
+        echo "=================================================="
+        head /tmp/own.output
+        echo "=================================================="
+        echo ""
+
+        echo "office output head:"
+        echo "=================================================="
+        head /tmp/office.output
+        echo "=================================================="
+        exit 1
+    fi
+done
