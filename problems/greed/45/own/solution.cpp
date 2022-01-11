@@ -3,10 +3,11 @@ public:
     int jump(vector<int>& nums) {
 		int size = nums.size();
 		int far_limit = 0, far_i;
-		int i, j, counter = 0;
+		int i, j, counter = -1;
 		for (i = 0; i < size; i++) {
+			cout << i << endl;
 			if (far_limit < i)
-				return 0;
+				return -1;
 			if (far_limit > size)
 				break;
 			for (j = i; j <= nums[i] + i; j++) {
@@ -15,12 +16,12 @@ public:
 					far_i = j;
 				}
 			}
-			if (i < far_i)
-				return 0;
+			if (i > far_i)
+				return -2;
 			i = far_i - 1;
 			counter++;
 			
 		}
-		return counter;
+		return counter + 1;
     }
 };
