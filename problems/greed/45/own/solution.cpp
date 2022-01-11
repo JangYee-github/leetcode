@@ -2,13 +2,16 @@ class Solution {
 public:
     int jump(vector<int>& nums) {
 		int size = nums.size();
-		int far_limit = 0, far_i;
-		int i, j, counter = -1;
+        if (size <= 1)
+            return 0;
+        int end = size - 1;
+		int far_limit = nums[0], far_i = 0;
+        int i, j, counter = 0;
 		for (i = 0; i < size; i++) {
-			cout << i << endl;
+			counter++;
 			if (far_limit < i)
 				return -1;
-			if (far_limit > size)
+			if (far_limit >= end)
 				break;
 			for (j = i; j <= nums[i] + i; j++) {
 				if (far_limit  < (j + nums[j])) {
@@ -19,9 +22,8 @@ public:
 			if (i > far_i)
 				return -2;
 			i = far_i - 1;
-			counter++;
 			
 		}
-		return counter + 1;
+		return counter;
     }
 };
