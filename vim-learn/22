@@ -1,0 +1,18 @@
+def fib(n):
+    a = 1
+    if a < n:
+print "yes"
+return True
+    return False
+----------------------------------------------------------------------------------------------------
+# 可视区用>来缩进
+:4
+:set shiftwidth=4 softtabstop=4 expandtab
+Vj>.
+----------------------------------------------------------------------------------------------------
+def fib(n):
+    a = 1
+    if a < n:
+        print "yes"
+        return True
+    return False

@@ -1,0 +1,8 @@
+var tpl = [
+  '<a href="{url}">{title}</a>'
+]
+
+vi{
+va{
+vit
+vat

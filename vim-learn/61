@@ -1,0 +1,8 @@
+collection = getCollection();
+process(somethingInTheWay, target);
+----------------------------------------------------------------------------------------------------
+# 可视模式粘贴: yiw
+yiwjwwvep
+----------------------------------------------------------------------------------------------------
+collection = getCollection();
+process(collection, target);

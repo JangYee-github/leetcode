@@ -1,0 +1,19 @@
+:ls
+:bprevious
+:bnext
+:bfirst
+:blast
+:buffer 2
+:bdelete 2 3 4
+:2,4 bdelete
+
+:vsp filename
+:sp filename
+<Ctrl>w(w/h/j/k/l)
+
+:tabedit filename
+:tabnext [2]		(2gt)
+:tabnext 		(gt)
+:tabprevious 		(gT)
+:tabmove 0
+
