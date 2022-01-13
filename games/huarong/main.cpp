@@ -64,13 +64,6 @@ inline bool actL() {
 	pan[zi][zj-1] = pan[zi][zj];
 	pan[zi][zj] = tmp;
 	zj--;
-	if (isInMap()) {
-		zj++;
-		tmp = pan[zi][zj-1];
-		pan[zi][zj-1] = pan[zi][zj];
-		pan[zi][zj] = tmp;
-		return false;
-	}
 	return true;
 }
 
@@ -80,13 +73,6 @@ inline bool actR() {
 	pan[zi][zj+1] = pan[zi][zj];
 	pan[zi][zj] = tmp;
 	zj++;
-	if (isInMap()) {
-		zj--;
-		tmp = pan[zi][zj+1];
-		pan[zi][zj+1] = pan[zi][zj];
-		pan[zi][zj] = tmp;
-		return false;
-	}
 	return true;
 }
 
@@ -96,13 +82,6 @@ inline bool actU() {
 	pan[zi-1][zj] = pan[zi][zj];
 	pan[zi][zj] = tmp;
 	zi--;
-	if (isInMap()) {
-		zi++;
-		tmp = pan[zi-1][zj];
-		pan[zi-1][zj] = pan[zi][zj];
-		pan[zi][zj] = tmp;
-		return false;
-	}
 	return true;
 }
 
@@ -112,13 +91,6 @@ inline bool actD() {
 	pan[zi+1][zj] = pan[zi][zj];
 	pan[zi][zj] = tmp;
 	zi++;
-	if (isInMap()) {
-		zi--;
-		tmp = pan[zi+1][zj];
-		pan[zi+1][zj] = pan[zi][zj];
-		pan[zi][zj] = tmp;
-		return false;
-	}
 	return true;
 }
 
@@ -129,7 +101,6 @@ void findZIndex() {
 			if (9 == pan[i][j]) {
 				zi = i;
 				zj = j;
-				isInMap();
 				return ;
 			}
 		}
@@ -154,24 +125,29 @@ void initPan() {
 4 1 0
 */
 void run() {
-	if (isOrdered())
+	if (isOrdered() || isInMap())
 		return ;
 	showPan();
 	if (zi > 0) {
-		if (actU())
-			run();
+		actU();
+		run();
+		actD();
+
 	}
 	if (zi < 2) {
-		if (actD())
-			run();
+		actD();
+		run();
+		actU();
 	}
 	if (zj > 0) {
-		if (actL())
-			run();
+		actL();
+		run();
+		actR();
 	}
 	if (zj < 2) {
-		if (actR())
-			run();
+		actR();
+		run();
+		actL();
 	}
 }
 
